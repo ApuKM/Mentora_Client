@@ -3,13 +3,14 @@ import { Users } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-const FeaturedCard = () => {
+const FeaturedCard = ({course}) => {
+    const {title, category, thumbnail, price} = course;
     return (
         <div
-            className="group flex flex-col bg-white rounded-3xl border border-slate-200 overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+            className="group flex flex-col bg-white rounded-3xl border border-slate-200 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
         >
             <div className="relative aspect-16/10 overflow-hidden">
-                <Image src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600'
+                <Image src={thumbnail|| 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600'} 
 
                     alt="Course Image"
                     height={400}
@@ -24,20 +25,20 @@ const FeaturedCard = () => {
                         variant="solid"
                         className="font-bold text-[10px] uppercase"
                     >
-                        Premium
+                        {category}
                     </Chip>
                 </div>
             </div>
             <div className="p-5 flex flex-col grow space-y-3">
                 <h4 className="font-bold text-slate-900 line-clamp-2 group-hover:text-blue-600 transition-colors">
-                    Mastering React - From Beginner to Pro
+                    {title}
                 </h4>
                 <div className="flex items-center justify-between pt-2 border-t border-slate-50">
                     <div className="flex items-center gap-1 text-[10px] font-bold text-slate-400">
                         <Users className="w-3 h-3" />
                         <span>0</span>
                     </div>
-                    <span className="font-black text-blue-600">$0</span>
+                    <span className="font-black text-blue-600">${price}</span>
                 </div>
             </div>
         </div>
