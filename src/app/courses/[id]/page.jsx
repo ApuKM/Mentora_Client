@@ -71,7 +71,7 @@ export default async function CourseDetails({ params }) {
 
 
                     <p className="text-xs font-bold text-slate-400 italic">
-                        Last enrolled: {lastEnrolledAt}
+                        Last enrolled: {lastEnrolledAt.split("T")[0]}
                     </p>
 
                 </div>

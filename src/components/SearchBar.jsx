@@ -2,8 +2,23 @@
 "use client";
 
 import { Search } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
 
 const SearchBar = () => {
+  const [search, setSearch] = useState("");
+  const searchParams = useSearchParams();
+  const router = useRouter()
+
+  const handleSearch = () => {
+    const params = new URLSearchParams(searchParams.toString())
+    if(search){
+      params.set("query", search)
+    }else{
+      params.delete("query")
+    }
+    router.push(`/courses?${params.toString()}`)
+  }
 
   return (
     <div className="relative flex items-center bg-white border border-slate-200 rounded-2xl shadow-sm focus-within:ring-4 focus-within:ring-blue-600/10 focus-within:border-blue-600 transition-all overflow-hidden">
@@ -13,12 +28,15 @@ const SearchBar = () => {
       </div>
 
       <input
+      value={search}
+      onChange={(e) => setSearch(e.target.value)}
         type="text"
         placeholder="Search for courses (e.g. Next.js, Web Design...)"
         className="flex-1 h-14 px-4 outline-none bg-transparent text-slate-700 placeholder:text-slate-400"
       />
 
       <button
+      onClick={handleSearch}
         className="h-10 px-6 mr-2 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors"
 
       >
