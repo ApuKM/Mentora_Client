@@ -23,6 +23,8 @@ export default function Login() {
       toast.error(`Login failed. ${error?.message}`);
       return;
     }
+    // const { data: tokenData } = await authClient.token()
+    // console.log(tokenData)
   };
 
   return (

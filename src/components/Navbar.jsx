@@ -129,10 +129,10 @@ export function MainNavbar() {
             </div>
 
             <div className="flex flex-col gap-2">
-              <p className="px-4 text-xs font-bold text-muted-foreground uppercase tracking-wider">Account</p>
+              <p className="px-4 text-xs font-bold text-muted-foreground uppercase tracking-wider mb-3">Account</p>
               <button
                 onClick={handleLogOut}
-                className="block w-full text-left px-4 py-3 text-base font-medium text-red-500 hover:bg-red-50 rounded-xl">Log Out</button>
+                className="block w-full text-left px-4 py-3 text-base font-medium text-red-500 hover:bg-red-50 rounded-xl cursor-pointer">Log Out</button>
             </div>
 
           </div>

@@ -1,13 +1,19 @@
 
+import { auth } from '@/lib/auth';
 import { fetchSingleCourse } from '@/lib/courses/data';
 import { Chip } from '@heroui/react';
 import { BookOpen, Clock, BarChart, Users } from 'lucide-react';
+import { headers } from 'next/headers';
 import Image from 'next/image';
 
 export default async function CourseDetails({ params }) {
     const { id } = await params;
 
-    const course = await fetchSingleCourse(id);
+    const {token} = await auth.api.getToken({
+        headers: await headers()
+    })
+
+    const course = await fetchSingleCourse(id, token);
     const { title, thumbnail, description, category, price, duration, instructor, enrollCount } = course;
 
     // console.log(course);
