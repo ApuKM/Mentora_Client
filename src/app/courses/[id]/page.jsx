@@ -1,4 +1,5 @@
 
+import EnrollmentButton from '@/components/EnrollmentButton';
 import { auth } from '@/lib/auth';
 import { fetchSingleCourse } from '@/lib/courses/data';
 import { Chip } from '@heroui/react';
@@ -14,7 +15,7 @@ export default async function CourseDetails({ params }) {
     })
 
     const course = await fetchSingleCourse(id, token);
-    const { title, thumbnail, description, category, price, duration, instructor, enrollCount } = course;
+    const { title, thumbnail, description, category, price, duration, instructor, enrollCount, lastEnrolledAt } = course;
 
     // console.log(course);
 
@@ -70,7 +71,7 @@ export default async function CourseDetails({ params }) {
 
 
                     <p className="text-xs font-bold text-slate-400 italic">
-                        Last enrolled:
+                        Last enrolled: {lastEnrolledAt}
                     </p>
 
                 </div>
@@ -102,6 +103,7 @@ export default async function CourseDetails({ params }) {
                                 ))}
                             </ul>
                         </div>
+                         <EnrollmentButton course={course} />
                         <p className="text-center text-xs text-slate-500 font-bold">30-Day Money-Back Guarantee • Secure Payment</p>
                     </div>
                 </div>
